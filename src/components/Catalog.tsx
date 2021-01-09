@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
 
 const Catalog: React.FC = () => {
-    const store = useSelector(state => state);
-    console.log(store);
+    const catalog = useSelector(state => state);
+    console.log(catalog);
     
     return (
         <h1>Catalog</h1>
