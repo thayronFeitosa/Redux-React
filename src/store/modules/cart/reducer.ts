@@ -8,15 +8,24 @@ const INITIAL_STATE: IcartState = {
 
 export const cart: Reducer<IcartState> = (state = INITIAL_STATE, action) =>{
     return produce(state, draft => {
+        
         switch(action.type){
             case 'ADD_PRODUCT_TO_CART': {
                 const { product } = action.payload;
+                const  productInCartIndex = draft.items.findIndex(item => 
+                item.product.id === product.id,
+                );
 
-                draft.items.push({
-                    product,
-                    quantity: 1,
-                });
-                
+                if(productInCartIndex >= 0){
+                    draft.items[productInCartIndex].quantity ++;
+                }else{
+                    draft.items.push({
+                        product,
+                        quantity: 1,
+                    });
+                }
+           
+
                 break;      
             }
             default: {
